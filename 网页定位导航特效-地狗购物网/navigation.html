@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>地狗购物网——网页定位导航效果</title>
+	<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding:0;
+		}
+		body{
+			font-size: 12px;
+			line-height: 1.7;
+		}
+
+		li{
+			list-style: none;
+		}
+
+		#content{
+			width:800px;
+			margin: 0 auto;
+			padding:20px;
+		}
+
+		#content h1{
+			color:#0088bb;
+		}
+		#content .item{
+			padding:20px;
+			margin-bottom: 20px;
+			border:1px dotted #0088bb;
+		}
+		#item .item h2{
+			font-size: 16px;
+			font-weight: bold;
+			border-bottom: 2px solid #0088bb;
+			margin-bottom: 10px;
+		}
+		#content .item li{
+			display: inline;
+			margin-right: 10px;
+		}
+		#content .item li a img{
+			width: 230px;
+			height: 230px;
+			border: none;
+		}
+
+		#menu{
+			position: fixed;
+			top: 100px;
+			/*先居中*/
+			left:50%;
+			/*然后再相对中间进行偏移，实现定位*/
+			margin-left: 400px;
+			width: 80px;
+		}
+
+		#menu ul li a{
+			display: block;
+			margin:5px 0;
+			font-size: 14px;
+			font-weight: bold;
+			color: #333;
+			width:80px;
+			height: 50px;
+			line-height: 50px;
+			text-decoration: none;
+			text-align: center;
+		}
+
+		/*#menu ul li a:link,
+		#menu ul li a:visited{
+
+		}*/
+
+		#menu ul li a:hover,
+		#menu ul li a:active,
+		#menu ul li a.current{
+			color: #fff;
+			background: #0088bb;
+		}
+
+		/*ie6 hack*/
+		/*解决ie6不支持position: fixed;的方法*/
+		/*下面的样式用于解决导航菜单随着页面的滚动发生跳变的问题*/
+        * html, * html body {
+            background-image: url(about:blank);
+            background-attachment: fixed;
+        }
+		/*下面的样式用于解决导航菜单在显示页面固定的问题*/
+        * html #menu {
+            /*position: fixed;*/
+            position: absolute;
+            top: expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+100+'px');
+        }
+
+	</style>
+</head>
+<body>
+	<div id="menu">
+		<ul>
+			<li><a href="#item1" class="current">1F 男装</a></li>
+			<li><a href="#item2">2F 女装</a></li>
+			<li><a href="#item3">3F 美妆</a></li>
+			<li><a href="#item4">4F 母婴</a></li>
+			<li><a href="#item5">5F 家电</a></li>
+		</ul>
+	</div>
+	<div id="content">
+		<h1>地狗购物网</h1>
+		<div id="item1" class="item">
+			<h2>1F 男装</h2>
+			<ul>
+				<li><a href="#"><img src="1F.jpg" alt="男装"></a></li>
+				<li><a href="#"><img src="1F.jpg" alt="男装"></a></li>
+				<li><a href="#"><img src="1F.jpg" alt="男装"></a></li>
+				<li><a href="#"><img src="1F.jpg" alt="男装"></a></li>
+				<li><a href="#"><img src="1F.jpg" alt="男装"></a></li>
+				<li><a href="#"><img src="1F.jpg" alt="男装"></a></li>
+				<li><a href="#"><img src="1F.jpg" alt="男装"></a></li>
+				<li><a href="#"><img src="1F.jpg" alt="男装"></a></li>
+				<li><a href="#"><img src="1F.jpg" alt="男装"></a></li>
+			</ul>
+		</div><div id="item2" class="item">
+			<h2>2F 女装</h2>
+			<ul>
+				<li><a href="#"><img src="2F.jpg" alt="女装"></a></li>
+				<li><a href="#"><img src="2F.jpg" alt="女装"></a></li>
+				<li><a href="#"><img src="2F.jpg" alt="女装"></a></li>
+				<li><a href="#"><img src="2F.jpg" alt="女装"></a></li>
+				<li><a href="#"><img src="2F.jpg" alt="女装"></a></li>
+				<li><a href="#"><img src="2F.jpg" alt="女装"></a></li>
+				<li><a href="#"><img src="2F.jpg" alt="女装"></a></li>
+				<li><a href="#"><img src="2F.jpg" alt="女装"></a></li>
+				<li><a href="#"><img src="2F.jpg" alt="女装"></a></li>
+			</ul>
+		</div><div id="item3" class="item">
+			<h2>3F 美妆</h2>
+			<ul>
+				<li><a href="#"><img src="3F.jpg" alt="美妆"></a></li>
+				<li><a href="#"><img src="3F.jpg" alt="美妆"></a></li>
+				<li><a href="#"><img src="3F.jpg" alt="美妆"></a></li>
+				<li><a href="#"><img src="3F.jpg" alt="美妆"></a></li>
+				<li><a href="#"><img src="3F.jpg" alt="美妆"></a></li>
+				<li><a href="#"><img src="3F.jpg" alt="美妆"></a></li>
+				<li><a href="#"><img src="3F.jpg" alt="美妆"></a></li>
+				<li><a href="#"><img src="3F.jpg" alt="美妆"></a></li>
+				<li><a href="#"><img src="3F.jpg" alt="美妆"></a></li>
+			</ul>
+		</div><div id="item4" class="item">
+			<h2>4F 数码</h2>
+			<ul>
+				<li><a href="#"><img src="4F.png" alt="数码"></a></li>
+				<li><a href="#"><img src="4F.png" alt="数码"></a></li>
+				<li><a href="#"><img src="4F.png" alt="数码"></a></li>
+				<li><a href="#"><img src="4F.png" alt="数码"></a></li>
+				<li><a href="#"><img src="4F.png" alt="数码"></a></li>
+				<li><a href="#"><img src="4F.png" alt="数码"></a></li>
+				<li><a href="#"><img src="4F.png" alt="数码"></a></li>
+				<li><a href="#"><img src="4F.png" alt="数码"></a></li>
+				<li><a href="#"><img src="4F.png" alt="数码"></a></li>
+			</ul>
+		</div><div id="item5" class="item">
+			<h2>5F 母婴</h2>
+			<ul>
+				<li><a href="#"><img src="5F.jpg" alt="母婴"></a></li>
+				<li><a href="#"><img src="5F.jpg" alt="母婴"></a></li>
+				<li><a href="#"><img src="5F.jpg" alt="母婴"></a></li>
+				<li><a href="#"><img src="5F.jpg" alt="母婴"></a></li>
+				<li><a href="#"><img src="5F.jpg" alt="母婴"></a></li>
+				<li><a href="#"><img src="5F.jpg" alt="母婴"></a></li>
+				<li><a href="#"><img src="5F.jpg" alt="母婴"></a></li>
+				<li><a href="#"><img src="5F.jpg" alt="母婴"></a></li>
+				<li><a href="#"><img src="5F.jpg" alt="母婴"></a></li>
+			</ul>
+		</div>
+	</div>
+	<script>
+		jQuery(document).ready(function() {
+			// 监听滚动条
+			$(window).scroll(function() {
+				/* Act on the event */
+				var $top=$(document).scrollTop();
+				var $menu=$('#menu');
+				// $('#content').find('.item')比$('#content .item')效率高
+				var $items=$('#content').find('.item');
+				// 当前所在div块（item）的#id,加#号方便后续操作
+				var $currentId="";
+				$items.each(function(){
+					// 此处$(this)中的this不能加引号，否则报错
+					// 此处的this为一个DOM对象，通过$(this)转化为jQuery对象才能使用.offset().top
+					var $this=$(this);
+					var $itemTop=$this.offset().top;
+					// 此处-100是为了用户体验，在上一个div快要移出显示区域的时候即变换导航
+					if($top>$itemTop-100){
+						$currentId="#"+$this.attr("id");
+					}else{
+						// 减少不必要循环，提升性能
+						return false;
+					};
+				});
+				// 给相应div的a标签设置current类（前面css设置了.current为选中状态样式），取消其他链接的current
+				var $currentLink=$menu.find(".current");
+				// 当currentID为空，表示显示区域处在第一个div，不需要进行操作
+				// 当计算得出的currentID和显示区域的href属性值相同时也不需要操作
+				if($currentId&&$currentLink.attr("href")!=$currentId){
+					$currentLink.removeClass("current");
+					$menu.find("[href="+$currentId+"]").addClass("current");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

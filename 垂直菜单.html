@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>demo</title>
+	<link rel="stylesheet" href="">
+	<style>
+		ul>li>ul{
+			display:none;
+		}
+		ul>li>ul.on{
+			display:block;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var menu=document.getElementById("menu");
+		var cls=menu.getElementsByClassName("first");
+		menu.onclick=function(e){
+			var e=e||window.event;
+			var target=e.target||e.srcElement;
+			if(target.className=="first"){
+				if(target.children[0].className=="on"){
+					target.children[0].className="";
+				}else{
+					for(var i=0;i<cls.length;i++){
+						cls[i].children[0].className="";
+					}
+					target.children[0].className="on";
+
+				}
+			}
+		}
+		}
+	</script>
+</head>
+<body>
+	<ul id="menu">
+		<li class="first">一级菜单
+			<ul class="on">
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+			</ul>
+		</li>
+		<li class="first">一级菜单
+			<ul>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+			</ul>
+		</li>
+		<li class="first">一级菜单
+			<ul>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+			</ul>
+		</li>
+		<li class="first">一级菜单
+			<ul>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+			</ul>
+		</li>
+		<li class="first">一级菜单
+			<ul>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

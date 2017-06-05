@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>circleMovement</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" >
+		#container{
+			position:fixed;
+			width: 400px;
+			height:400px;
+			background-color: #ccc;
+		}
+		#point{
+			position:fixed;
+			top:200px;
+			left:200px;
+			width: 2px;
+			height:2px;
+			background-color: #0088bb;
+		}
+		#move{
+			position:fixed;
+			width: 20px;
+			height:20px;
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="point"></div>
+		<div id="move"></div>
+	</div>
+	<script type="text/javascript">
+		window.onload=(function(){
+			// 取得旋转div
+			var _move=document.getElementById("move");
+			// 取得旋转圆心
+			var _point=document.getElementById("point");
+			// 设置旋转速度30秒一圈,即1秒转过360/30=12度。
+			var _w=30;
+			// 设置旋转直径
+			var _r=100;
+			// 设置定时器为50毫秒执行一次
+			var _updateV=50;
+			// 设置定时器执行一次目标移动的角度,这里设置为0.6度
+			var _updateW=((360/_w)*_updateV)/1000;
+			var _arr=new Array();
+			//设置目标已旋转的角度
+			var _d=0;
+			// 设置初始时目标的位置
+			function reset(element,r){
+				_arr=getPosition(element,r,_d);
+				if(_arr.length==2){
+				setPosition(element,_arr[0],_arr[1]);
+				}else{
+					console.log("_arr数组有问题啊");
+				}
+			};
+			function getPosition(element,r,d){
+				var _positionArr=new Array();
+				_positionArr=getCenter(element);
+				function getCenter(element){
+					var _centerArr=new Array();
+					
+				}
+			};
+			console.log(Math.sin(30*(Math.PI/180))*_r);
+			// console.log(_move);
+			var _circleMove=setInterval(function(){
+
+			}, _updateV);
+			//传入对象以及需要设置的top和left，设置属性
+			function setPosition(element,top,left){
+				element.style.top=top;
+				element.style.left=left;
+			};
+
+		});
+	</script>
+</body>
+</html>

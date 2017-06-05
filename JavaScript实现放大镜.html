@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>放大镜</title>
+<style>
+        * {
+margin: 0;
+padding: 0;
+        }
+
+        #demo {
+display: block;
+width: 400px;
+height: 255px;
+margin: 50px;
+position: relative;
+border: 1px solid #ccc;
+        }
+
+        #small-box {
+position: relative;
+z-index: 1;
+        }
+
+        #float-box {
+display: none;
+width: 160px;
+height: 120px;
+position: absolute;
+background: #ffffcc;
+border: 1px solid #ccc;
+filter: alpha(opacity=50);
+opacity: 0.5;
+cursor: move;
+        }
+
+        #mark {
+position: absolute;
+display: block;
+width: 400px;
+height: 255px;
+z-index: 10;
+background: #fff;
+filter: alpha(opacity=0);
+opacity: 0;
+cursor: move;
+        }
+
+        #big-box {
+display: none;
+position: absolute;
+top: 0;
+left: 460px;
+width: 400px;
+height: 300px;
+overflow: hidden;
+border: 1px solid #ccc;
+z-index: 1;
+        }
+
+        #big-box img {
+position: absolute;
+z-index: 5;
+        }
+</style>
+<script>
+
+        //页面加载完毕后执行
+window.onload = function () {
+
+    var objDemo = document.getElementById("demo");
+    var objSmallBox = document.getElementById("small-box");
+    var objMark = document.getElementById("mark");
+    var objFloatBox = document.getElementById("float-box");
+    var objBigBox = document.getElementById("big-box");
+    var objBigBoxImage = objBigBox.getElementsByTagName("img")[0];
+    var rate=1024/400;//设置图片放大倍数
+
+    objMark.onmouseover = function () {
+    objFloatBox.style.display = "block";
+    objBigBox.style.display = "block";
+     }
+
+    objMark.onmouseout = function () {
+    objFloatBox.style.display = "none";
+    objBigBox.style.display = "none";
+    }
+
+    objMark.onmousemove = function (ev) {
+        //请补充此处鼠标移动时的响应方法
+        var ev=ev||window.event;//兼容性
+        var mousePos = mousePosition(ev);
+        var mousePositionX=mousePos.x;//获取x坐标
+        var mousePositionY=mousePos.y;//获取y坐标
+
+        // console.log(mousePositionX+"---"+mousePositionY);
+        var mouseLeft=mousePositionX-objDemo.offsetLeft-objSmallBox.offsetLeft;//获取鼠标距离小盒子边框左侧的距离
+        var mouseTop=mousePositionY-objDemo.offsetTop-objSmallBox.offsetTop;//获取鼠标距离小盒子边框上方的距离
+
+        // console.log(mouseLeft+"------"+mouseTop);
+        var floatLeft=mouseLeft-(objFloatBox.offsetWidth/2);//获取放大器左侧距离父盒子的距离
+        var floatTop=mouseTop-(objFloatBox.offsetHeight/2);//获取放大器上方距离父盒子上方的距离
+
+        //设置放大器相对父盒子最远能运动到哪
+        var maxLeft=objSmallBox.offsetWidth-objFloatBox.offsetWidth;
+        var maxTop=objSmallBox.offsetHeight-objFloatBox.offsetHeight;
+        //设置放大器相对父盒子最近能运动到哪
+        var minLeft=0;
+        var minTop=0;
+
+        // console.log(objFloatBox.offsetWidth/2+"----"+objFloatBox.offsetHeight/2);
+        //如果超出运动范围则设置为最远或最近的位置
+        floatLeft=floatLeft<minLeft?minLeft:floatLeft;
+        floatLeft=floatLeft>maxLeft?maxLeft:floatLeft;
+        floatTop=floatTop<minTop?minTop:floatTop;
+        floatTop=floatTop>maxTop?maxTop:floatTop;
+        // 设置放大镜的位置
+        objFloatBox.style.left=floatLeft+"px";
+        objFloatBox.style.top=floatTop+"px";
+
+        // 设置大图的位置
+        var imgLeft=0;
+        var imgTop=0;
+        imgLeft=floatLeft*rate;
+        imgTop=floatTop*rate;
+        objBigBoxImage.style.left=-imgLeft+"px";
+        objBigBoxImage.style.top=-imgTop+"px";
+    }
+
+    /*获取鼠标相对于文档的位置，当页面滚动时，坐标值会发生变化*/
+    function mousePosition(ev){
+       if(ev.pageX || ev.pageY){
+         return {x:ev.pageX, y:ev.pageY};
+       }
+       return {
+         x:ev.clientX + document.body.scrollLeft - document.body.clientLeft,
+         y:ev.clientY + document.body.scrollTop - document.body.clientTop
+       };
+    }
+}
+</script>
+</head>
+<body>
+    <div id="demo">
+        <div id="small-box">
+            <div id="mark"></div>
+            <div id="float-box"></div>
+            <img src="http://img.mukewang.com/537d77fb0001559d04000255.jpg"/>
+        </div>
+        <div id="big-box">
+            <img src="http://img.mukewang.com/537d781b0001c04210240654.jpg"/>
+        </div>
+    </div>
+</body>
+</html>
